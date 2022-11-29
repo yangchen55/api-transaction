@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000
 // middle
 app.use(morgan("dev"))
 // app.use(helmet()) setting default security headers to protect some attacks 
-//app.use(cors()) //allow cross orihin resources
+app.use(cors()) //allow cross orihin resources
 app.use(express.json()) // convert income data in the req.body
 
 // db connection 
@@ -22,21 +22,21 @@ import userRouter from "./src/routers/userRouter.js";
 app.use("/api/v1/user", userRouter);
 
 
-
 app.use("*", (req, res)  =>{
     res.json({
-       
-        message: "you are in the wrong place, yo, go back"
+        status: "error",   
+        message: "404 page not found!"
     })
+   
 } )
 
 // global error handler 
 app.use((error, req, res, next)  => {
-
+console.log(error)
     const code = error.code ||  500
     res.status(code).json({
         status:"error",
-        message:"you are done lot of mistake"
+        message: error.message
     })
 })
 

@@ -27,10 +27,10 @@ router.post('/', async (req, res, next)  => {
        
         
     } catch (error) {
-       
-        if(error.message.includes("E1100 duplicate")){
+       error.code = 500
+        if(error.message.includes("E11000 duplicate")){
             error.code = 200;
-            error.message = ("double email address")
+            error.message = "double email address"
         }
         next(error)
         

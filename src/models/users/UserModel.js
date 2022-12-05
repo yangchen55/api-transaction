@@ -8,5 +8,7 @@ import UserSchema from "./UserSchema.js";
 
 //login user
 
-
+export const findAuser = obj  => {
+    return UserSchema.findOne(obj)
+}
 //delete user

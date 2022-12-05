@@ -15,8 +15,6 @@ const userSchema = new mongoose.Schema({
         type: Number, 
         min: 1000, // for the four digit reuirement
         max: 9999,
-
-
     }
 
 },

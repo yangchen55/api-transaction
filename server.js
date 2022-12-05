@@ -19,7 +19,9 @@ connectDB();
 
 // router
 import userRouter from "./src/routers/userRouter.js";
+import transRouter from "./src/routers/transRouter.js"
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/transaction", transRouter);
 
 
 app.use("*", (req, res)  =>{
@@ -27,7 +29,7 @@ app.use("*", (req, res)  =>{
         status: "error",   
         message: "404 page not found!"
     })
-   
+
 } )
 
 // global error handler 

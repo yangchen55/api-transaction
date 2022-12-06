@@ -17,11 +17,12 @@ app.use(express.json()) // convert income data in the req.body
 import {connectDB} from "./src/config/dbConfig.js";
 connectDB();
 
-// router
+// routers 
 import userRouter from "./src/routers/userRouter.js";
 import transRouter from "./src/routers/transRouter.js"
+import {isAuth} from './src/middleware/authmiddleware.js'
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/transaction", transRouter);
+app.use("/api/v1/transaction", isAuth, transRouter);
 
 
 app.use("*", (req, res)  =>{

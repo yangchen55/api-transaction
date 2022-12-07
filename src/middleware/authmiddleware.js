@@ -7,7 +7,7 @@ import { findAuser } from "../models/users/UserModel.js";
             console.log(authorization)
           
             const user = authorization? await findAuser({_id: authorization}):null;
-            console.log("hit middl ware");
+            console.log("it is middle ware testiing");
             user?._id
             ? next()
             :res.json({

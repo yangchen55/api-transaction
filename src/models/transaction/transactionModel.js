@@ -15,3 +15,12 @@ export const getAllUsersTransactions =  (filter) => {
 }
 
 // delete
+// Delete
+export const deleteManyTrans = (ids, userId) => {
+  return transactionSchema.deleteMany({
+    _id: {
+      $in: ids,
+    },
+    userId,
+  });
+};

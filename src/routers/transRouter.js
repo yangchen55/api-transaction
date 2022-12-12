@@ -5,7 +5,7 @@ import { isAuth } from "../middleware/authmiddleware.js";
 
 const router  = express.Router();
 
-import { insertTransaction, getAllUsersTransactions } from '../models/transaction/transactionModel.js'
+import { insertTransaction, getAllUsersTransactions, deleteManyTrans } from '../models/transaction/transactionModel.js'
 
 // get the data from the transaction database 
 router.get("/", async(req, res, next)  =>{
@@ -53,17 +53,26 @@ router.post('/', isAuth,  async (req, res, next)  => {
     }
 })
 
-router.delete("/", (req, res, next)  =>{
+// delete
+router.delete("/", async (req, res, next) => {
     try {
-        
-read.json({
-    status: "success",
-    message:"delete method to  do "
-})
+      console.log(req.body, "kjhgfd");
+      const { authorization } = req.headers; 
+      const result = await deleteManyTrans(req.body, authorization);
+      console.log(result);
+      result?.deletedCount
+        ? res.json({
+            status: "success",
+            message: result.deletedCount + " item(s) deleted ",
+          })
+        : res.json({
+            status: "error",
+            message: "Nothing happened",
+          });
     } catch (error) {
-        next(error)     
+      next(error);
     }
-} )
+  });
 
    
 export default router;

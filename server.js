@@ -54,8 +54,9 @@ app.use("*", (req, res)  =>{
 // global error handler 
 app.use((error, req, res, next)  => {
 console.log(error)
-    const code = error.code ||  500
-    res.status(code).json({
+    // const code = error.code ||  500
+    // res.status(code).json({
+    res.json({
         status:"error",
         message: error.message
     })

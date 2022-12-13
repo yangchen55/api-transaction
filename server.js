@@ -53,7 +53,7 @@ app.use("*", (req, res)  =>{
 
 // global error handler 
 app.use((error, req, res, next)  => {
-console.log(error)
+// console.log(error)
     // const code = error.code ||  500
     // res.status(code).json({
     res.json({
